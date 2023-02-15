@@ -1,0 +1,23 @@
+ [
+  {
+    "username": "admin@yourstore.com",
+    "password": "adminwrong",
+    "expected": "Invalid credentials"
+  },
+  {
+    "username": "adminwrong@yourstore.com",
+    "password": "admin",
+    "expected": "Invalid credentials"
+  },
+  {
+    "username": "adminwrong@yourstore.com",
+    "password": "adminwrong",
+    "expected": "PIM"
+  },
+  {
+    "username": " ",
+    "password": " ",
+    "expected": "PIM"
+  }
+ ]
+ 
