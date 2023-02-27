@@ -25,7 +25,7 @@ describe('Login With NOP POM', () => {
         login.verifyTextOfLoginPage();
     });
 
-    it('Verify the login functionality in NOPCommerce', () => {
+    it('Verify the login functionality in NOPCommerce using valid credentials', () => {
         //fixture method --- pass the json file name which holds the testdata.
         cy.fixture("nopcommercelogin").then((data)=>{
             data.forEach((userdata) => {
@@ -50,31 +50,40 @@ describe('Login With NOP POM', () => {
         });
     });
 
-    //negative testcases.
-    it('Verify the NOP Commerce Login of the page ', () => {
+    //Negative testcases.
+    it.only('Verify the login functionality in NOPCommerce using invalid credentials', () => {
         //fixture method --- pass the json file name which holds the testdata.
         cy.fixture("nopcommerceinvalidlogin").then((data)=>{
-            /*
-            Verify the title of the login page.
-            */
-            //login.verifyTitleLoginPage();
-            //login.verifyAllImplicitAssertions();
-
             data.forEach((userdata) => {
-                login.enterUserName(userdata.username);
-                login.enterPassword(userdata.password);
-                login.clickSubmit();
-                cy.wait(3000)
-                if(userdata.username=='admin@yourstore.com' && userdata.password=='admin')
+                if(userdata.username=='admin@yourstore.com' && userdata.password=='adminwrong')
                 {
                     //const dashboard = new DashBoard();
-                    dashboard.verifyLoginUserNameText(userdata.expected);
-                    //dashboard.verifyTitle();
-                    //dashboard.verifyLogoImage();
+                    login.enterUserName(userdata.username);
+                    login.enterPassword(userdata.password);
+                    login.clickSubmit();
+                    cy.wait(3000)
+                    login.verifyInvalidLoginMsg(userdata.expected);
                 }
-                else{
-                    //console.log("yyasdgasyd"+userdata.expected)
-                    //login.verifyInvalidLoginMsg(userdata.expected);
+                else if(userdata.username=='adminwrong@yourstore.com' && userdata.password=='admin'){
+                    login.enterUserName(userdata.username);
+                    login.enterPassword(userdata.password);
+                    login.clickSubmit();
+                    cy.wait(3000)
+                    login.verifyInvalidLoginMsg(userdata.expected);
+                }
+                else if(userdata.username=='adminwrong@yourstore.com' && userdata.password=='adminwrong'){
+                    login.enterUserName(userdata.username);
+                    login.enterPassword(userdata.password);
+                    login.clickSubmit();
+                    cy.wait(3000)
+                    login.verifyInvalidLoginMsg(userdata.expected);
+                }
+                else if(userdata.username==' ' && userdata.password==' '){
+                    login.enterUserName(userdata.username);
+                    login.enterPassword(userdata.password);
+                    login.clickSubmit();
+                    cy.wait(3000)
+                    login.verifyInvalidLoginMsg_EnterEmail(userdata.expected);
                 }
             });
         });

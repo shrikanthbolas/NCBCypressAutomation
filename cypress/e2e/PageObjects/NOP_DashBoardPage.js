@@ -30,8 +30,8 @@ class DashBoard
         cy.get(this.logOutLink).click();
     }
 
-    // verifyInvalidLoginMsg(InvalidMsg){
-    //     cy.get(this.verifyInvalidCredMsg).should("have.text",InvalidMsg);
-    // }
+    verifyInvalidLoginMsg(InvalidMsg){
+        cy.get(this.verifyInvalidCredMsg).should("have.text",InvalidMsg);
+    }
 }
 export default DashBoard;

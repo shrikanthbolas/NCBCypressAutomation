@@ -2,22 +2,22 @@
   {
     "username": "admin@yourstore.com",
     "password": "adminwrong",
-    "expected": "Invalid credentials"
+    "expected": "Login was unsuccessful. Please correct the errors and try again."
   },
   {
     "username": "adminwrong@yourstore.com",
     "password": "admin",
-    "expected": "Invalid credentials"
+    "expected": "Login was unsuccessful. Please correct the errors and try again."
   },
   {
     "username": "adminwrong@yourstore.com",
     "password": "adminwrong",
-    "expected": "PIM"
+    "expected": "Login was unsuccessful. Please correct the errors and try again."
   },
   {
     "username": " ",
     "password": " ",
-    "expected": "PIM"
+    "expected": "Please enter your email"
   }
  ]
  
